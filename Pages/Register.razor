@@ -1,0 +1,105 @@
+@page "/register"
+@layout AuthLayout
+
+<section class="auth-form-panel">
+  <div class="panel-header">
+    <div class="logo-circle" aria-hidden="true">LOGO</div>
+    <h2 class="brand-name">TugmaSycan</h2>
+    <p class="portal-label">Recruiter Portal</p>
+  </div>
+
+  <div class="auth-card-register">
+    <p class="card-intro">Register to start screening candidates fairly and efficiently.</p>
+
+    <EditForm Model="@registerModel" OnValidSubmit="HandleRegister">
+      <div class="field-row">
+        <div class="field">
+          <label for="first_name">First name</label>
+          <input type="text" id="first_name" @bind="registerModel.FirstName" placeholder="Jane" required />
+        </div>
+        <div class="field">
+          <label for="last_name">Last name</label>
+          <input type="text" id="last_name" @bind="registerModel.LastName" placeholder="Doe" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="reg_email">Email</label>
+        <input type="email" id="reg_email" @bind="registerModel.Email" placeholder="you@company.com" required />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="birth_date">Birth date</label>
+          <input type="date" id="birth_date" @bind="registerModel.BirthDate" />
+        </div>
+        <div class="field">
+          <label for="role">Role</label>
+          <select id="role" @bind="registerModel.Role">
+            <option>HR Manager</option>
+            <option>Recruiter</option>
+            <option>Student Org Leader</option>
+            <option>Project Manager</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="organization">Organization / School</label>
+        <input type="text" id="organization" @bind="registerModel.Organization" placeholder="Cebu Institute of Technology — University" />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="password1">Password</label>
+          <div class="password-wrap">
+            <input type="@(showPassword1 ? "text" : "password")" id="password1" @bind="registerModel.Password" placeholder="••••••••" required />
+            <button type="button" class="password-toggle" @onclick="() => showPassword1 = !showPassword1" aria-label="Toggle password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="password2">Confirm password</label>
+          <div class="password-wrap">
+            <input type="@(showPassword2 ? "text" : "password")" id="password2" @bind="registerModel.ConfirmPassword" placeholder="••••••••" required />
+            <button type="button" class="password-toggle" @onclick="() => showPassword2 = !showPassword2" aria-label="Toggle password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary">Create account</button>
+    </EditForm>
+  </div>
+
+  <p class="auth-switch">Already have an account? <NavLink href="login">Log in</NavLink></p>
+</section>
+
+@code {
+  private RegisterModel registerModel = new();
+  private bool showPassword1 = false;
+  private bool showPassword2 = false;
+
+  private void HandleRegister()
+  {
+  }
+
+  public class RegisterModel
+  {
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public DateTime? BirthDate { get; set; }
+    public string Role { get; set; } = "Recruiter";
+    public string Organization { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+    public string ConfirmPassword { get; set; } = string.Empty;
+  }
+}

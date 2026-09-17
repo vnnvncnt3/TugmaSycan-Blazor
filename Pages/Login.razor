@@ -1,0 +1,53 @@
+@page "/login"
+@layout AuthLayout
+
+<section class="auth-form-panel">
+  <div class="panel-header">
+    <div class="logo-circle" aria-hidden="true">LOGO</div>
+    <h2 class="brand-name">TugmaSycan</h2>
+    <p class="portal-label">Recruiter Portal</p>
+  </div>
+
+  <div class="auth-card-login">
+    <p class="card-intro">Sign in to view candidate rankings, screenings, and match breakdowns.</p>
+
+    <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" @bind="loginModel.Email" placeholder="you@company.com" required />
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input type="@(showPassword ? "text" : "password")" id="password" @bind="loginModel.Password" placeholder="••••••••" required />
+          <button type="button" class="password-toggle" @onclick="() => showPassword = !showPassword" aria-label="Toggle password">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary">Log in</button>
+    </EditForm>
+  </div>
+
+  <p class="auth-switch">New here? <NavLink href="register">Create account</NavLink></p>
+</section>
+
+@code {
+  private LoginModel loginModel = new();
+  private bool showPassword = false;
+
+  private void HandleLogin()
+  {
+  }
+
+  public class LoginModel
+  {
+    public string Email { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+  }
+}

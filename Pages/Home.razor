@@ -1,0 +1,146 @@
+﻿@page "/"
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Screen resumes on merit,<br>not on first impressions.</h1>
+    <p class="hero-subtext">TugmaSycan extracts skills, scores candidates against your requirements, and shows exactly why each one ranks where they do — so you spend less time skimming and more time deciding.</p>
+    <NavLink href="register" class="btn-primary hero-cta">View the Prototype</NavLink>
+  </div>
+  <div class="hero-visual">
+    <img class="image-placeholder" src="https://commons.wikimedia.org/wiki/Special:FilePath/Luke-chesser-JKUTrJ4vK00-unsplash.jpg" alt="Analytics dashboard on a laptop screen" />
+  </div>
+</section>
+
+<section id="features" class="features">
+  <h2 class="section-title">Everything you need to screen fairly</h2>
+
+  <div class="feature-row">
+    <div class="feature-col">
+      <img class="image-placeholder" src="https://commons.wikimedia.org/wiki/Special:FilePath/Example%20CV%20Resume%20(Director%20Level).png" alt="A resume document being scanned for skills" />
+    </div>
+    <div class="feature-col feature-text">
+      <h3>Automatic skill extraction</h3>
+      <div class="accent-line"></div>
+      <p>Upload standard text-based PDF or Word resumes in bulk. A pretrained NLP/NER model identifies skills, education, certifications, and experience — no manual data entry.</p>
+    </div>
+  </div>
+
+  <div class="feature-row feature-row--reverse">
+    <div class="feature-col">
+      <img class="image-placeholder" src="https://commons.wikimedia.org/wiki/Special:FilePath/Questionnaire-checklist-completed.png" alt="A completed requirements checklist" />
+    </div>
+    <div class="feature-col feature-text">
+      <h3>Requirements that match your role</h3>
+      <div class="accent-line"></div>
+      <p>Define exactly what a role needs — years of experience, certifications, language proficiency — and let that become the scoring criteria, not a generic checklist.</p>
+    </div>
+  </div>
+
+  <div class="feature-row">
+    <div class="feature-col">
+      <img class="image-placeholder" src="https://commons.wikimedia.org/wiki/Special:FilePath/Luke-chesser-JKUTrJ4vK00-unsplash.jpg" alt="Data dashboard showing scoring metrics" />
+    </div>
+    <div class="feature-col feature-text">
+      <h3>See exactly why, not just a score</h3>
+      <div class="accent-line"></div>
+      <p>Rule-based criteria matching produces an itemized checklist — met, partially met, or missing — so every ranking is explainable rather than a black-box percentage.</p>
+    </div>
+  </div>
+
+  <div class="feature-row feature-row--reverse">
+    <div class="feature-col">
+      <img class="image-placeholder" src="https://commons.wikimedia.org/wiki/Special:FilePath/Questionnaire-checklist-completed.png" alt="Reviewing candidate criteria without identifying details" />
+    </div>
+    <div class="feature-col feature-text">
+      <h3>Anonymized Fair Review mode</h3>
+      <div class="accent-line"></div>
+      <p>Toggle off names, schools, addresses, and photos while reviewing rankings — keeping the focus on qualifications, not identity.</p>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <h2 class="section-title">From resume to ranking in four steps</h2>
+
+  <div class="slideshow">
+    <div class="slides-viewport">
+      <div class="slides" style="transform: translateX(-@(currentSlide * 25)% );">
+        <div class="slide">
+          <img class="image-placeholder image-placeholder--wide" src="https://commons.wikimedia.org/wiki/Special:FilePath/Example%20CV%20Resume%20(Director%20Level).png" alt="Uploading a resume document" />
+          <h4>1. Upload</h4>
+          <p>Drop in resumes by the batch. Supports standard text-based PDF and Word documents.</p>
+        </div>
+        <div class="slide">
+          <img class="image-placeholder image-placeholder--wide" src="https://commons.wikimedia.org/wiki/Special:FilePath/Questionnaire-checklist-completed.png" alt="Extracting structured data from a resume" />
+          <h4>2. Extract</h4>
+          <p>Skills, education, certifications, and experience get pulled out automatically.</p>
+        </div>
+        <div class="slide">
+          <img class="image-placeholder image-placeholder--wide" src="https://commons.wikimedia.org/wiki/Special:FilePath/Luke-chesser-JKUTrJ4vK00-unsplash.jpg" alt="Scoring dashboard with metrics" />
+          <h4>3. Score</h4>
+          <p>Rule-based keyword and criteria matching scores each candidate against your defined requirements.</p>
+        </div>
+        <div class="slide">
+          <img class="image-placeholder image-placeholder--wide" src="https://commons.wikimedia.org/wiki/Special:FilePath/Luke-chesser-JKUTrJ4vK00-unsplash.jpg" alt="Ranked results dashboard" />
+          <h4>4. Rank</h4>
+          <p>Candidates are ranked with a full breakdown — ready for your review.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-dots">
+      @for (int i = 0; i < 4; i++)
+      {
+        var slideIndex = i;
+        <button type="button" class="dot @(currentSlide == slideIndex ? "active" : "")" @onclick="() => SetSlide(slideIndex)" aria-label="Go to slide @(slideIndex + 1)"></button>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="tech-stack">
+  <h2 class="section-title">Under the hood</h2>
+  <div class="stack-grid">
+    <div class="stack-card">
+      <h3>Backend</h3>
+      <div class="accent-line"></div>
+      <p>Django 5 handling routing, authentication, and the ORM, organized by vertical slice so each feature owns its views, templates, and assets.</p>
+    </div>
+    <div class="stack-card">
+      <h3>Database</h3>
+      <div class="accent-line"></div>
+      <p>Supabase PostgreSQL, with schema managed entirely through Django migrations — a custom user model plus per-feature profile and settings tables.</p>
+    </div>
+    <div class="stack-card">
+      <h3>Document parsing</h3>
+      <div class="accent-line"></div>
+      <p>Python libraries for text extraction from standard PDF and Word files. Complex or creative resume layouts are intentionally out of scope.</p>
+    </div>
+    <div class="stack-card">
+      <h3>NLP extraction</h3>
+      <div class="accent-line"></div>
+      <p>A pretrained NER model tags skills, education, and certifications from extracted text. No custom-trained model — accuracy varies with resume formatting.</p>
+    </div>
+    <div class="stack-card">
+      <h3>Scoring logic</h3>
+      <div class="accent-line"></div>
+      <p>Rule-based keyword and criteria matching, not semantic embedding similarity or ML prediction. Chosen deliberately to keep scope achievable in one semester.</p>
+    </div>
+    <div class="stack-card">
+      <h3>Fairness approach</h3>
+      <div class="accent-line"></div>
+      <p>Rule-based anonymization hides identifying fields during review. No ML bias audit trained on historical hiring data — a stated limitation, not an oversight.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2>Curious how it works under the hood?</h2>
+  <p>See the stack, the extraction pipeline, and the scoring logic that power TugmaSycan.</p>
+  <NavLink href="register" class="btn-primary">Explore System Architecture</NavLink>
+</section>
+
+@code {
+  private int currentSlide = 0;
+  private void SetSlide(int index) => currentSlide = index;
+}
