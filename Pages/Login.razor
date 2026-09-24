@@ -1,27 +1,30 @@
 @page "/login"
 @layout AuthLayout
 
-<section class="auth-form-panel">
-  <div class="panel-header">
-    <div class="logo-circle" aria-hidden="true">LOGO</div>
-    <h2 class="brand-name">TugmaSycan</h2>
-    <p class="portal-label">Recruiter Portal</p>
+<section class="flex-1 bg-white flex flex-col items-center justify-center py-12 px-8">
+  <div class="flex flex-col items-center text-center mb-7">
+    <div class="w-14 h-14 rounded-full border border-dashed border-[#7C8B96] flex items-center justify-center text-[10px] font-medium tracking-wider text-[#7C8B96] mb-3">LOGO</div>
+    <h2 class="text-xl font-semibold m-0 text-[#22303C]">TugmaSycan</h2>
+    <p class="text-[13px] font-medium text-[#7C8B96] mt-1 mb-0">Recruiter Portal</p>
   </div>
 
-  <div class="auth-card-login">
-    <p class="card-intro">Sign in to view candidate rankings, screenings, and match breakdowns.</p>
+  <div class="w-full max-w-[400px] bg-white border border-[#22303C]/10 rounded-xl shadow-[0_4px_24px_rgba(34,48,60,0.08)] p-7">
+    <p class="text-[13px] text-[#7C8B96] mb-5 leading-normal">Sign in to view candidate rankings, screenings, and match breakdowns.</p>
 
     <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="email" id="email" @bind="loginModel.Email" placeholder="you@company.com" required />
+      <div class="mb-4">
+        <label for="email" class="block text-sm mb-1.5 text-[#22303C]">Email</label>
+        <input type="email" id="email" @bind="loginModel.Email" placeholder="you@company.com" required 
+               class="w-full py-2.5 px-3 font-inherit text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]" />
       </div>
 
-      <div class="field">
-        <label for="password">Password</label>
-        <div class="password-wrap">
-          <input type="@(showPassword ? "text" : "password")" id="password" @bind="loginModel.Password" placeholder="••••••••" required />
-          <button type="button" class="password-toggle" @onclick="() => showPassword = !showPassword" aria-label="Toggle password">
+      <div class="mb-4">
+        <label for="password" class="block text-sm mb-1.5 text-[#22303C]">Password</label>
+        <div class="relative">
+          <input type="@(showPassword ? "text" : "password")" id="password" @bind="loginModel.Password" placeholder="••••••••" required 
+                 class="w-full py-2.5 pl-3 pr-10 font-inherit text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]" />
+          <button type="button" @onclick="() => showPassword = !showPassword" aria-label="Toggle password"
+                  class="absolute right-2 top-1/2 -translate-y-1/2 bg-transparent border-0 text-[#7C8B96] p-1 flex items-center cursor-pointer">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
               <circle cx="12" cy="12" r="3"/>
@@ -30,20 +33,20 @@
         </div>
       </div>
 
-      <button type="submit" class="btn-primary">Log in</button>
+      <button type="submit" class="w-full py-3 text-[15px] font-medium text-white bg-[#3F6C8C] hover:bg-[#345974] border-0 rounded cursor-pointer mt-1 transition-colors">
+        Log in
+      </button>
     </EditForm>
   </div>
 
-  <p class="auth-switch">New here? <NavLink href="register">Create account</NavLink></p>
+  <p class="text-[13px] text-[#7C8B96] mt-5">New here? <NavLink href="register" class="text-[#3F6C8C] hover:underline">Create account</NavLink></p>
 </section>
 
 @code {
   private LoginModel loginModel = new();
   private bool showPassword = false;
 
-  private void HandleLogin()
-  {
-  }
+  private void HandleLogin() {}
 
   public class LoginModel
   {
