@@ -1,29 +1,42 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Website</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
+﻿<!-- Top Header for Sidebar -->
+<div class="h-14 bg-black/40 flex items-center justify-between px-4 sm:px-6">
+  <NavLink class="text-base font-bold text-white tracking-wide no-underline flex items-center gap-2" href="">
+    <img src="/images/logo.png" alt="Logo" class="h-6 w-auto object-contain" />
+    <span>TugmaSycan</span>
+  </NavLink>
+  <button title="Navigation menu" class="sm:hidden p-2 text-white bg-white/10 hover:bg-white/20 rounded cursor-pointer border-0" @onclick="ToggleNavMenu">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-    </nav>
+<!-- Nav Links Container -->
+<div class="@(collapseNavMenu ? "hidden sm:block" : "block") h-[calc(100vh-3.5rem)] overflow-y-auto" @onclick="ToggleNavMenu">
+  <nav class="flex flex-col py-2">
+    <!-- Home Link -->
+    <div class="px-3 py-1">
+      <NavLink class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 rounded-md transition-colors [&.active]:bg-white/20 [&.active]:text-white no-underline" href="" Match="NavLinkMatch.All">
+        <svg class="w-5 h-5 text-current" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        <span>Home</span>
+      </NavLink>
+    </div>
+
+    <!-- Features / Dashboard Link -->
+    <div class="px-3 py-1">
+      <NavLink class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 rounded-md transition-colors [&.active]:bg-white/20 [&.active]:text-white no-underline" href="dashboard">
+        <svg class="w-5 h-5 text-current" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        </svg>
+        <span>Dashboard</span>
+      </NavLink>
+    </div>
+  </nav>
 </div>
 
 @code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
+  private bool collapseNavMenu = true;
+  private void ToggleNavMenu() => collapseNavMenu = !collapseNavMenu;
 }
