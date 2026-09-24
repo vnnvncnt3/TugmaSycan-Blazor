@@ -1,77 +1,114 @@
 ﻿@inherits LayoutComponentBase
 
-<header class="top-bar">
-  <NavLink href="" class="brand-block">
-  <img src="logo.png" alt="TugmaSycan Logo" class="logo-mark" />
-  <span class="brand">TugmaSycan</span>
-</NavLink>
+<div class="min-h-screen flex flex-col bg-[#F5F6F7] font-['IBM_Plex_Sans',sans-serif] text-[#22303C]">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-50 flex items-center justify-between gap-6 px-8 py-3.5 bg-white border-b border-[#22303C]/10">
+    <div class="flex items-center gap-8">
+      <NavLink href="" class="flex items-center gap-2.5 text-[#22303C] no-underline shrink-0">
+        <img src="/images/logo.png" alt="TugmaSycan Logo" class="h-8 w-auto object-contain" />
+        <span class="text-lg font-semibold tracking-tight">TugmaSycan</span>
+      </NavLink>
 
-  <nav class="top-nav">
-    <div class="nav-item">
-      <button class="nav-trigger" type="button" @onclick="ToggleFeatures">Features
-        <svg class="chevron @(showFeatures ? "chevron-rotated" : "")" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
-      </button>
-    </div>
-    <div class="nav-item">
-      <button class="nav-trigger" type="button">Solutions
-        <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
-      </button>
-    </div>
-    <div class="nav-item">
-      <button class="nav-trigger" type="button">Resources
-        <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
-      </button>
-    </div>
-  </nav>
+      <nav class="hidden md:flex items-center gap-1">
+        <div class="relative">
+          <button type="button" @onclick="ToggleFeatures" class="flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium text-[#22303C] hover:text-[#3F6C8C] transition-colors cursor-pointer bg-transparent border-0">
+            Features
+            <svg class="w-3.5 h-3.5 transition-transform duration-200 @(showFeatures ? "rotate-180 text-[#3F6C8C]" : "")" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+        </div>
 
-  <div class="top-actions">
-    <NavLink href="login" class="btn-ghost">Sign in</NavLink>
-    <NavLink href="register" class="btn-primary btn-primary--small">Sign up</NavLink>
-  </div>
-</header>
+        <button type="button" class="flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium text-[#22303C] hover:text-[#3F6C8C] transition-colors cursor-pointer bg-transparent border-0">
+          Solutions
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
 
-@if (showFeatures)
-{
-  <div class="mega-host">
-    <div class="mega-panel">
-      <p class="mega-label">Features</p>
-      <div class="mega-grid">
-        <a href="#features" class="mega-item" @onclick="ToggleFeatures">
-          <span class="mega-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span>
-          <span class="mega-text"><span class="mega-title">Skill Extraction</span><span class="mega-desc">Pull skills, education, and experience automatically.</span></span>
-        </a>
-        <a href="#features" class="mega-item" @onclick="ToggleFeatures">
-          <span class="mega-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>
-          <span class="mega-text"><span class="mega-title">Custom Requirements</span><span class="mega-desc">Define what the role actually needs, then score against it.</span></span>
-        </a>
-        <a href="#features" class="mega-item" @onclick="ToggleFeatures">
-          <span class="mega-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg></span>
-          <span class="mega-text"><span class="mega-title">Match Breakdown</span><span class="mega-desc">See exactly what was met, partially met, or missing.</span></span>
-        </a>
-        <a href="#features" class="mega-item" @onclick="ToggleFeatures">
-          <span class="mega-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
-          <span class="mega-text"><span class="mega-title">Fair Review Mode</span><span class="mega-desc">Hide identifying details while reviewing rankings.</span></span>
-        </a>
+        <button type="button" class="flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium text-[#22303C] hover:text-[#3F6C8C] transition-colors cursor-pointer bg-transparent border-0">
+          Resources
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Actions (With fixed button alignment & no-wrap) -->
+    <div class="flex items-center gap-3 shrink-0 whitespace-nowrap">
+      <NavLink href="login" class="px-3 py-2 text-sm font-medium text-[#22303C] hover:text-[#3F6C8C] transition-colors whitespace-nowrap">
+        Sign in
+      </NavLink>
+      <NavLink href="register" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-[#3F6C8C] hover:bg-[#345974] rounded transition-colors whitespace-nowrap shrink-0">
+        Sign up
+      </NavLink>
+    </div>
+  </header>
+
+  <!-- Mega Menu Dropdown -->
+  @if (showFeatures)
+  {
+    <div class="absolute top-[60px] left-1/2 -translate-x-1/2 w-[min(1100px,calc(100vw-64px))] z-50">
+      <div class="mt-2 bg-white border border-[#22303C]/10 rounded-xl shadow-[0_12px_32px_rgba(34,48,60,0.12)] p-8">
+        <p class="text-[11px] font-semibold tracking-wider uppercase text-[#7C8B96] mb-4">Features</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <a href="#features" class="flex gap-3 p-2 rounded-lg text-[#22303C] hover:bg-[#F5F6F7] transition-colors" @onclick="ToggleFeatures">
+            <span class="text-[#3F6C8C] shrink-0 pt-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+            </span>
+            <span class="flex flex-col gap-1">
+              <span class="text-sm font-semibold">Skill Extraction</span>
+              <span class="text-[12.5px] text-[#7C8B96] leading-snug">Pull skills, education, and experience automatically.</span>
+            </span>
+          </a>
+
+          <a href="#features" class="flex gap-3 p-2 rounded-lg text-[#22303C] hover:bg-[#F5F6F7] transition-colors" @onclick="ToggleFeatures">
+            <span class="text-[#3F6C8C] shrink-0 pt-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </span>
+            <span class="flex flex-col gap-1">
+              <span class="text-sm font-semibold">Custom Requirements</span>
+              <span class="text-[12.5px] text-[#7C8B96] leading-snug">Define what the role needs, then score against it.</span>
+            </span>
+          </a>
+
+          <a href="#features" class="flex gap-3 p-2 rounded-lg text-[#22303C] hover:bg-[#F5F6F7] transition-colors" @onclick="ToggleFeatures">
+            <span class="text-[#3F6C8C] shrink-0 pt-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg>
+            </span>
+            <span class="flex flex-col gap-1">
+              <span class="text-sm font-semibold">Match Breakdown</span>
+              <span class="text-[12.5px] text-[#7C8B96] leading-snug">See what was met, partially met, or missing.</span>
+            </span>
+          </a>
+
+          <a href="#features" class="flex gap-3 p-2 rounded-lg text-[#22303C] hover:bg-[#F5F6F7] transition-colors" @onclick="ToggleFeatures">
+            <span class="text-[#3F6C8C] shrink-0 pt-0.5">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </span>
+            <span class="flex flex-col gap-1">
+              <span class="text-sm font-semibold">Fair Review Mode</span>
+              <span class="text-[12.5px] text-[#7C8B96] leading-snug">Hide identifying details while reviewing rankings.</span>
+            </span>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-}
+  }
 
-<main>
-  @Body
-</main>
+  <!-- Body Content -->
+  <main class="flex-1 w-full">
+    @Body
+  </main>
 
-<footer class="footer">
-  <p class="footer-brand">TugmaSycan</p>
-  <p class="footer-tagline">Scan Resumes, Match Skills, and Rank Candidates Efficiently</p>
-  <p class="footer-copyright">© 2026 TugmaSycan. Built for CSIT327.</p>
-</footer>
+  <!-- Footer -->
+  <footer class="text-center py-10 px-8 bg-[#22303C] text-[#F5F6F7]/85 mt-auto">
+    <p class="text-base font-semibold mb-1.5 text-white">TugmaSycan</p>
+    <p class="text-[13px] mb-4 text-[#F5F6F7]/70">Scan Resumes, Match Skills, and Rank Candidates Efficiently</p>
+    <p class="text-xs text-[#F5F6F7]/50 m-0">© 2026 TugmaSycan. Built for CSIT327.</p>
+  </footer>
+</div>
 
 @code {
   private bool showFeatures = false;
