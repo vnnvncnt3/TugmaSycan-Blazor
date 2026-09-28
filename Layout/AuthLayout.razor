@@ -1,36 +1,36 @@
 @inherits LayoutComponentBase
 
-<main class="auth-shell">
-  <aside class="auth-visual">
-    <div class="visual-content">
-      <h1>Screen Resumes.<br>Rank with Confidence.</h1>
-      <p class="visual-subtext">Scan Resumes, Match Skills, and Rank Candidates Efficiently</p>
+<main class="flex min-h-screen w-full flex-col md:flex-row">
+  <aside class="flex flex-none flex-col justify-between bg-gradient-to-br from-[#22303C] to-[#3F6C8C] px-7 py-10 text-[#F5F6F7] md:basis-[440px] md:p-14">
+    <div>
+      <h1 class="mb-4 text-[30px] font-semibold leading-tight">Screen Resumes.<br>Rank with Confidence.</h1>
+      <p class="mb-8 max-w-[34ch] text-[15px] font-normal text-[#F5F6F7]/80">Scan Resumes, Match Skills, and Rank Candidates Efficiently</p>
 
-      <ul class="checklist">
-        <li><span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Extract skills automatically</li>
-        <li><span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Score and rank candidates</li>
-        <li><span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Review detailed match breakdowns</li>
-        <li><span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Enable fair, anonymized review</li>
+      <ul class="m-0 flex list-none flex-col gap-3.5 p-0">
+        <li class="flex items-center gap-2.5 text-sm font-normal"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#F5F6F7]/50 text-[#F5F6F7]"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Extract skills automatically</li>
+        <li class="flex items-center gap-2.5 text-sm font-normal"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#F5F6F7]/50 text-[#F5F6F7]"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Score and rank candidates</li>
+        <li class="flex items-center gap-2.5 text-sm font-normal"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#F5F6F7]/50 text-[#F5F6F7]"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Review detailed match breakdowns</li>
+        <li class="flex items-center gap-2.5 text-sm font-normal"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#F5F6F7]/50 text-[#F5F6F7]"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Enable fair, anonymized review</li>
       </ul>
     </div>
 
-    <div class="feature-row-auth">
-      <div class="feature-tag">
+    <div class="flex flex-wrap gap-5 border-t border-[#F5F6F7]/15 pt-8">
+      <div class="flex items-center gap-2 text-[13px] font-medium text-[#F5F6F7]/85">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         Bias-free screening
       </div>
-      <div class="feature-tag">
+      <div class="flex items-center gap-2 text-[13px] font-medium text-[#F5F6F7]/85">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
         Match breakdowns
       </div>
-      <div class="feature-tag">
+      <div class="flex items-center gap-2 text-[13px] font-medium text-[#F5F6F7]/85">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12" y="8" width="3" height="10"/><rect x="17" y="5" width="3" height="13"/></svg>
         Bulk processing
       </div>
     </div>
   </aside>
 
-  <section class="auth-form-panel">
+  <section class="flex flex-1 flex-col items-center justify-center bg-white px-6 py-10 md:px-8 md:py-12">
     @Body
   </section>
 </main>
