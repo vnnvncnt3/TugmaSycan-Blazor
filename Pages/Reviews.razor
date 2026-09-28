@@ -1,0 +1,123 @@
+@page "/reviews"
+@layout MainLayout
+
+<PageTitle>Reviews — TugmaSycan</PageTitle>
+
+<main class="max-w-2xl mx-auto px-8 py-16">
+    <h1 class="mb-4 text-3xl font-semibold text-slate-ink">Rate your experience</h1>
+    <p class="mb-8 text-[15px] leading-relaxed text-slate-gray">
+        Tell us how TugmaSycan worked for you. Pick a star rating and leave a short comment.
+    </p>
+
+    <div class="p-6 mb-12 bg-white border border-slate-ink/10 rounded-lg">
+        <div class="mb-5">
+            <label for="name" class="block mb-1.5 text-sm">Name <span class="text-slate-gray">(optional)</span></label>
+            <input id="name" type="text" @bind="name" @bind:event="oninput" placeholder="Your name"
+                   class="w-full px-3 py-2.5 text-sm border border-slate-gray rounded" />
+        </div>
+
+        <div class="mb-5">
+            <span class="block mb-1.5 text-sm">Rating</span>
+            <div class="flex gap-1" @onmouseleave="() => hover = 0">
+                @for (var i = 1; i <= 5; i++)
+                {
+                    var star = i;
+                    <button type="button" aria-label="@star out of 5 stars"
+                            @onclick="() => rating = star"
+                            @onmouseover="() => hover = star"
+                            class="text-4xl leading-none transition-colors @(star <= Shown ? "text-muted-gold" : "text-slate-gray/40")">
+                        ★
+                    </button>
+                }
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <label for="comment" class="block mb-1.5 text-sm">Comment</label>
+            <textarea id="comment" rows="4" @bind="comment" @bind:event="oninput" placeholder="What worked, and what could be better?"
+                      class="w-full px-3 py-2.5 text-sm border border-slate-gray rounded resize-y"></textarea>
+        </div>
+
+        @if (error is not null)
+        {
+            <p class="mb-4 text-sm text-red-700">@error</p>
+        }
+
+        <button type="button" @onclick="Submit"
+                class="px-6 py-3 text-[15px] font-medium text-white bg-steel-blue hover:bg-[#345a76] rounded">
+            Submit review
+        </button>
+    </div>
+
+    <div class="flex items-baseline justify-between mb-4">
+        <h2 class="text-xl font-semibold text-slate-ink">Reviews</h2>
+        @if (reviews.Count > 0)
+        {
+            <p class="text-sm text-slate-gray">
+                <span class="font-semibold text-slate-ink">@reviews.Average(r => r.Rating).ToString("0.0")</span> average · @reviews.Count review@(reviews.Count == 1 ? "" : "s")
+            </p>
+        }
+    </div>
+
+    @if (reviews.Count == 0)
+    {
+        <p class="text-sm text-slate-gray">No reviews yet. Be the first to leave one.</p>
+    }
+    else
+    {
+        <ul class="space-y-4">
+            @foreach (var r in reviews)
+            {
+                <li class="p-5 bg-white border border-slate-ink/10 rounded-lg">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-sm font-semibold">@r.Name</span>
+                        <span class="text-xs text-slate-gray">@r.PostedAt.ToString("MMM d, yyyy h:mm tt")</span>
+                    </div>
+                    <div class="mb-2 text-muted-gold" aria-label="@r.Rating out of 5 stars">
+                        @(new string('★', r.Rating))<span class="text-slate-gray/40">@(new string('★', 5 - r.Rating))</span>
+                    </div>
+                    <p class="text-sm leading-relaxed text-slate-ink">@r.Comment</p>
+                </li>
+            }
+        </ul>
+    }
+</main>
+
+@code {
+    private record Review(string Name, int Rating, string Comment, DateTime PostedAt);
+
+    private readonly List<Review> reviews = new();
+    private string name = "";
+    private string comment = "";
+    private int rating;
+    private int hover;
+    private string? error;
+
+    private int Shown => hover > 0 ? hover : rating;
+
+    private void Submit()
+    {
+        if (rating == 0)
+        {
+            error = "Please select a star rating.";
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(comment))
+        {
+            error = "Please write a comment.";
+            return;
+        }
+
+        reviews.Insert(0, new Review(
+            string.IsNullOrWhiteSpace(name) ? "Anonymous" : name.Trim(),
+            rating,
+            comment.Trim(),
+            DateTime.Now));
+
+        name = "";
+        comment = "";
+        rating = 0;
+        hover = 0;
+        error = null;
+    }
+}
