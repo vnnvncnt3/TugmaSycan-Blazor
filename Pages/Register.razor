@@ -1,41 +1,46 @@
 @page "/register"
 @layout AuthLayout
 
-<section class="auth-form-panel">
-  <div class="panel-header">
-    <img src="images/logo.png" alt="TugmaSycan Logo" class="logo-circle" style="border: none; object-fit: contain;" />
-    <h2 class="brand-name">TugmaSycan</h2>
-    <p class="portal-label">Recruiter Portal</p>
+<section class="flex-1 bg-white flex flex-col items-center justify-center py-12 px-8">
+  <div class="flex flex-col items-center text-center mb-7">
+    <img src="images/logo.png" alt="TugmaSycan Logo" class="w-14 h-14 object-contain mb-3" />
+    <h2 class="text-xl font-semibold m-0 text-[#22303C]">TugmaSycan</h2>
+    <p class="text-[13px] font-medium text-[#7C8B96] mt-1 mb-0">Recruiter Portal</p>
   </div>
 
-  <div class="auth-card-register">
-    <p class="card-intro">Register to start screening candidates fairly and efficiently.</p>
+  <div class="w-full max-w-[540px] bg-white border border-[#22303C]/10 rounded-xl shadow-[0_4px_24px_rgba(34,48,60,0.08)] py-7 px-8">
+    <p class="text-[13px] text-[#7C8B96] mb-5 leading-normal">Register to start screening candidates fairly and efficiently.</p>
 
     <EditForm Model="@registerModel" OnValidSubmit="HandleRegister">
-      <div class="field-row">
-        <div class="field">
-          <label for="first_name">First name</label>
-          <input type="text" id="first_name" @bind="registerModel.FirstName" placeholder="Jane" required />
+      <div class="flex flex-col md:flex-row md:gap-4">
+        <div class="mb-4 flex-1">
+          <label for="first_name" class="block text-sm mb-1.5 text-[#22303C]">First name</label>
+          <input type="text" id="first_name" @bind="registerModel.FirstName" placeholder="Jane" required
+                 class="w-full py-2.5 px-3 text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]" />
         </div>
-        <div class="field">
-          <label for="last_name">Last name</label>
-          <input type="text" id="last_name" @bind="registerModel.LastName" placeholder="Doe" required />
+        <div class="mb-4 flex-1">
+          <label for="last_name" class="block text-sm mb-1.5 text-[#22303C]">Last name</label>
+          <input type="text" id="last_name" @bind="registerModel.LastName" placeholder="Doe" required
+                 class="w-full py-2.5 px-3 text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]" />
         </div>
       </div>
 
-      <div class="field">
-        <label for="reg_email">Email</label>
-        <input type="email" id="reg_email" @bind="registerModel.Email" placeholder="you@company.com" required />
+      <div class="mb-4">
+        <label for="reg_email" class="block text-sm mb-1.5 text-[#22303C]">Email</label>
+        <input type="email" id="reg_email" @bind="registerModel.Email" placeholder="you@company.com" required
+               class="w-full py-2.5 px-3 text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]" />
       </div>
 
-      <div class="field-row">
-        <div class="field">
-          <label for="birth_date">Birth date</label>
-          <input type="date" id="birth_date" @bind="registerModel.BirthDate" />
+      <div class="flex flex-col md:flex-row md:gap-4">
+        <div class="mb-4 flex-1">
+          <label for="birth_date" class="block text-sm mb-1.5 text-[#22303C]">Birth date</label>
+          <input type="date" id="birth_date" @bind="registerModel.BirthDate"
+                 class="w-full py-2.5 px-3 text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]" />
         </div>
-        <div class="field">
-          <label for="role">Role</label>
-          <select id="role" @bind="registerModel.Role">
+        <div class="mb-4 flex-1">
+          <label for="role" class="block text-sm mb-1.5 text-[#22303C]">Role</label>
+          <select id="role" @bind="registerModel.Role"
+                  class="w-full py-2.5 px-3 text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]">
             <option>HR Manager</option>
             <option>Recruiter</option>
             <option>Student Org Leader</option>
@@ -44,28 +49,33 @@
         </div>
       </div>
 
-      <div class="field">
-        <label for="organization">Organization / School</label>
-        <input type="text" id="organization" @bind="registerModel.Organization" placeholder="Cebu Institute of Technology — University" />
+      <div class="mb-4">
+        <label for="organization" class="block text-sm mb-1.5 text-[#22303C]">Organization / School</label>
+        <input type="text" id="organization" @bind="registerModel.Organization" placeholder="Cebu Institute of Technology — University"
+               class="w-full py-2.5 px-3 text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]" />
       </div>
 
-      <div class="field-row">
-        <div class="field">
-          <label for="password1">Password</label>
-          <div class="password-wrap">
-            <input type="@(showPassword1 ? "text" : "password")" id="password1" @bind="registerModel.Password" placeholder="••••••••" required />
-            <button type="button" class="password-toggle" @onclick="() => showPassword1 = !showPassword1" aria-label="Toggle password">
+      <div class="flex flex-col md:flex-row md:gap-4">
+        <div class="mb-4 flex-1">
+          <label for="password1" class="block text-sm mb-1.5 text-[#22303C]">Password</label>
+          <div class="relative">
+            <input type="@(showPassword1 ? "text" : "password")" id="password1" @bind="registerModel.Password" placeholder="••••••••" required
+                   class="w-full py-2.5 pl-3 pr-10 text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]" />
+            <button type="button" @onclick="() => showPassword1 = !showPassword1" aria-label="Toggle password"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-transparent border-0 text-[#7C8B96] p-1 flex items-center cursor-pointer">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>
               </svg>
             </button>
           </div>
         </div>
-        <div class="field">
-          <label for="password2">Confirm password</label>
-          <div class="password-wrap">
-            <input type="@(showPassword2 ? "text" : "password")" id="password2" @bind="registerModel.ConfirmPassword" placeholder="••••••••" required />
-            <button type="button" class="password-toggle" @onclick="() => showPassword2 = !showPassword2" aria-label="Toggle password">
+        <div class="mb-4 flex-1">
+          <label for="password2" class="block text-sm mb-1.5 text-[#22303C]">Confirm password</label>
+          <div class="relative">
+            <input type="@(showPassword2 ? "text" : "password")" id="password2" @bind="registerModel.ConfirmPassword" placeholder="••••••••" required
+                   class="w-full py-2.5 pl-3 pr-10 text-sm border border-[#7C8B96] rounded bg-white text-[#22303C] focus:outline-none focus:ring-1 focus:ring-[#3F6C8C]" />
+            <button type="button" @onclick="() => showPassword2 = !showPassword2" aria-label="Toggle password"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-transparent border-0 text-[#7C8B96] p-1 flex items-center cursor-pointer">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>
               </svg>
@@ -74,11 +84,13 @@
         </div>
       </div>
 
-      <button type="submit" class="btn-primary">Create account</button>
+      <button type="submit" class="w-full py-3 text-[15px] font-medium text-white bg-[#3F6C8C] hover:bg-[#345974] border-0 rounded cursor-pointer mt-1 transition-colors">
+        Create account
+      </button>
     </EditForm>
   </div>
 
-  <p class="auth-switch">Already have an account? <NavLink href="login">Log in</NavLink></p>
+  <p class="text-[13px] text-[#7C8B96] mt-5">Already have an account? <NavLink href="login" class="text-[#3F6C8C] hover:underline">Log in</NavLink></p>
 </section>
 
 @code {
